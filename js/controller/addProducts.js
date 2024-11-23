@@ -1,6 +1,6 @@
 function addProducts() {
     // const repoUrl = "http://localhost:3000"
-    const repoUrl = "https://alura-geek-json-server.vercel.app"
+    const repoUrl = "https://practicing-front-end-challenge-alurageek.onrender.com"
 
     let form = document.querySelector('form');
     let nameProductForm = form.querySelector('#nameProductForm');

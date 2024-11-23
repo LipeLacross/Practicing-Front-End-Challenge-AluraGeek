@@ -2,7 +2,7 @@ import { deleteProduct } from "./deletProducts.js";
 
 function printProducts() {
     // const repoUrl = "http://localhost:3000"
-    const repoUrl = "https://alura-geek-json-server.vercel.app"
+    const repoUrl = "https://practicing-front-end-challenge-alurageek.onrender.com"
 
     let products = document.getElementById('products');
     console.log("llegue a printProductos")
@@ -14,8 +14,8 @@ function printProducts() {
                 // Crear un nuevo elemento de imagen (SVG) para cada producto
                 let svg = document.createElement('img');
                 svg.src = '../img/btn-borrar.svg';
-                
-                // Crear el HTML del producto 
+
+                // Crear el HTML del producto
                 let productHTML = `
                     <div class="cart" id="${element.id}">
                         <img src="${element.img}" alt="img-producto">
@@ -25,17 +25,17 @@ function printProducts() {
                         </div>
                     </div>
                 `;
-                
+
                 // Agregar el elemento SVG al contenedor de productos
                 let div = document.createElement('div');
                 div.innerHTML = productHTML;
                 div.querySelector('.price').appendChild(svg);
-                
+
                 // Agregar el producto al contenedor principal
                 products.appendChild(div);
 
                 svg.addEventListener('click', (event) => {
-                    event.preventDefault(); 
+                    event.preventDefault();
                     deleteProduct(element.id);
                 });
             });
