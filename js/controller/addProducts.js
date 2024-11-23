@@ -7,6 +7,7 @@ function addProducts() {
     let nameProductForm = form.querySelector('#nameProductForm');
     let priceProductForm = form.querySelector('#priceProductForm');
     let imgProductForm = form.querySelector('#imgProductForm');
+    let imgUploadForm = form.querySelector('#imgUploadForm');
     let btnSend = form.querySelector('#btnSend');
     let btnClean = form.querySelector('#btnClean');
 
@@ -17,30 +18,43 @@ function addProducts() {
         // Obter os valores dos campos do formulário
         let name = nameProductForm.value;
         let price = parseFloat(priceProductForm.value);
-        let img = imgProductForm.value;
+        let imgUrl = imgProductForm.value;
 
-        // Verificar se todos os campos estão completos
-        if (name.trim() === '' || isNaN(price) || img.trim() === '') {
-            alert('Por favor, preencha todos os campos');
+        // Verificar se há um arquivo de imagem carregado
+        let imgFile = imgUploadForm.files[0];
+
+        // Verificar se todos os campos obrigatórios estão completos
+        if (name.trim() === '' || isNaN(price)) {
+            alert('Por favor, preencha todos os campos obrigatórios');
             return;
         }
 
-        // Dados do novo produto
-        let novoProduto = {
-            name: name,
-            price: price,
-            img: img
-        };
+        // Processar o upload de imagem se houver um arquivo
+        if (imgFile) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const imgBase64 = reader.result; // Base64 da imagem
+                enviarProduto(name, price, imgBase64); // Enviar produto com a imagem em base64
+            };
+            reader.readAsDataURL(imgFile);
+        } else {
+            // Usar URL fornecida pelo usuário ou uma imagem padrão
+            imgUrl = imgUrl || "https://via.placeholder.com/150";
+            enviarProduto(name, price, imgUrl);
+        }
+    });
 
-        let options = {
+    // Função para enviar o produto ao backend
+    function enviarProduto(name, price, img) {
+        const novoProduto = { name, price, img };
+
+        fetch(`${repoUrl}/products`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(novoProduto)
-        };
-
-        fetch(`${repoUrl}/products`, options)
+            body: JSON.stringify(novoProduto),
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("A solicitação não foi bem-sucedida");
@@ -54,6 +68,7 @@ function addProducts() {
                 nameProductForm.value = '';
                 priceProductForm.value = '';
                 imgProductForm.value = '';
+                imgUploadForm.value = '';
 
                 // Atualiza a lista de produtos
                 printProducts();
@@ -61,7 +76,7 @@ function addProducts() {
             .catch(error => {
                 console.error("Erro ao realizar a solicitação:", error);
             });
-    });
+    }
 
     // Event listener para o botão "Limpar"
     btnClean.addEventListener('click', function (event) {
@@ -69,6 +84,7 @@ function addProducts() {
         nameProductForm.value = '';
         priceProductForm.value = '';
         imgProductForm.value = '';
+        imgUploadForm.value = '';
     });
 }
 
