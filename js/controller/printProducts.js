@@ -17,6 +17,9 @@ function printProducts() {
                         <p>${element.name}</p>
                         <div class="price">
                             <p>R$ ${element.price}</p>
+                            <button class="delete-btn" data-id="${element.id}">
+                                <img src="./img/btn-borrar.svg" alt="Excluir Produto">
+                            </button>
                         </div>
                     </div>
                 `;
@@ -26,11 +29,13 @@ function printProducts() {
                 div.innerHTML = productHTML;
                 products.appendChild(div);
 
-                // Adiciona funcionalidade de excluir ao botão de deletar (se aplicável)
-                let deleteBtn = div.querySelector('.price img'); // Altere conforme o seletor correto
-                if (deleteBtn) {
-                    deleteBtn.addEventListener('click', () => deleteProduct(element.id));
-                }
+                // Adicionar funcionalidade de exclusão ao botão
+                const deleteBtn = div.querySelector('.delete-btn');
+                deleteBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const productId = event.target.closest('.delete-btn').dataset.id;
+                    deleteProduct(productId);
+                });
             });
         })
         .catch(error => console.error("Erro ao buscar produtos:", error));
