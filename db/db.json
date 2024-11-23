@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Stormtrooper",
+      "price": 60,
+      "img": "../img/producto-1.png"
+    },
+    {
+      "id": "2",
+      "name": "Game Boy Classic",
+      "price": 60,
+      "img": "../img/producto-2.png"
+    },
+    {
+      "id": "07a2",
+      "name": "iPhone",
+      "price": 600,
+      "img": "../img/producto-3.png"
+    }
+  ]
+}

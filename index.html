@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Alura Geek | G6 </title>
+
+</head>
+
+<body>
+    <!-- Header  -->
+    <header>
+        <nav class="header">
+            <img src="./img/corazones-alura.png" alt="corazones alura">
+            <h1>AluraGeek</h1>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="containerProducts">
+
+            <h2>Mis productos:</h2>
+            <div id="products">
+
+                <!-- En esta área se agregan los productos -->
+
+            </div>
+
+
+        </section>
+
+        <section id="containerForm">
+            <h2>Agregar producto:</h2>
+            <div id="formContent">
+                <form action="">
+                    <input id="nameProductForm" type="text" placeholder="Nombre..." maxlength="50" >
+                    <input id="priceProductForm" type="number" placeholder="Precio..." >
+                    <input id="imgProductForm" type="text" placeholder="Imagen...">
+                    <div class="btn-form">
+                        <button id="btnSend">Enviar</button>
+                        <button id="btnClean">Limpiar</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+    <footer>
+        <div class="footer">
+            <img src="./img/corazones-alura.png" alt="corazones alura">
+            <h2>AluraGeek</h2>
+        </div>
+        <p>Desarrollado por Ale Cueto</p>
+        <p>Alura Latam- 2024</p>
+    </footer>
+
+    <script type="module">
+        import { printProducts } from './js/controller/printProducts.js';
+        import { addProducts } from './js/controller/addProducts.js';
+    </script>
+</body>
+
+</html>
