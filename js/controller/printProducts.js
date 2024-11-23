@@ -1,48 +1,40 @@
 import { deleteProduct } from "./deletProducts.js";
 
 function printProducts() {
-    // const repoUrl = "http://localhost:3000"
-    const repoUrl = "https://practicing-front-end-challenge-alurageek.onrender.com"
+    const repoUrl = "https://practicing-front-end-challenge-alurageek.onrender.com";
 
     let products = document.getElementById('products');
-    console.log("llegue a printProductos")
+    products.innerHTML = ''; // Limpa a lista antes de re-renderizar
 
     fetch(`${repoUrl}/products`)
         .then(response => response.json())
         .then(data => {
             data.forEach(element => {
-                // Crear un nuevo elemento de imagen (SVG) para cada producto
-                let svg = document.createElement('img');
-                svg.src = '../img/btn-borrar.svg';
-
-                // Crear el HTML del producto
+                // Criar o HTML do produto
                 let productHTML = `
                     <div class="cart" id="${element.id}">
-                        <img src="${element.img}" alt="img-producto">
+                        <img src="${element.img}" alt="Imagem do Produto">
                         <p>${element.name}</p>
                         <div class="price">
-                            <p>$ ${element.price}</p>
+                            <p>R$ ${element.price}</p>
                         </div>
                     </div>
                 `;
 
-                // Agregar el elemento SVG al contenedor de productos
+                // Criar elemento DOM para o produto
                 let div = document.createElement('div');
                 div.innerHTML = productHTML;
-                div.querySelector('.price').appendChild(svg);
-
-                // Agregar el producto al contenedor principal
                 products.appendChild(div);
 
-                svg.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    deleteProduct(element.id);
-                });
+                // Adiciona funcionalidade de excluir ao botão de deletar (se aplicável)
+                let deleteBtn = div.querySelector('.price img'); // Altere conforme o seletor correto
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', () => deleteProduct(element.id));
+                }
             });
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => console.error("Erro ao buscar produtos:", error));
 }
-
 
 printProducts();
 

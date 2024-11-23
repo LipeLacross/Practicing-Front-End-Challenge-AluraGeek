@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -10,59 +10,58 @@
 </head>
 
 <body>
-    <!-- Header  -->
-    <header>
-        <nav class="header">
-            <img src="img/coracaoalura.png" alt="corazones alura">
-            <h1>AluraGeek</h1>
-        </nav>
-    </header>
+<!-- Cabeçalho -->
+<header>
+    <nav class="header">
+        <img src="img/coracaoalura.png" alt="coração alura">
+        <h1>AluraGeek</h1>
+    </nav>
+</header>
 
-    <main>
+<main>
 
-        <section id="containerProducts">
+    <section id="containerProducts">
 
-            <h2>Mis productos:</h2>
-            <div id="products">
+        <h2>Meus produtos:</h2>
+        <div id="products">
 
-                <!-- En esta área se agregan los productos -->
+            <!-- Nesta área são adicionados os produtos -->
 
-            </div>
-
-
-        </section>
-
-        <section id="containerForm">
-            <h2>Agregar producto:</h2>
-            <div id="formContent">
-                <form action="">
-                    <input id="nameProductForm" type="text" placeholder="Nombre..." maxlength="50" >
-                    <input id="priceProductForm" type="number" placeholder="Precio..." >
-                    <input id="imgProductForm" type="text" placeholder="Imagen...">
-                    <div class="btn-form">
-                        <button id="btnSend">Enviar</button>
-                        <button id="btnClean">Limpiar</button>
-                    </div>
-
-                </form>
-            </div>
-
-        </section>
-
-    </main>
-    <footer>
-        <div class="footer">
-            <img src="img/coracaoalura.png" alt="corazones alura">
-            <h2>AluraGeek</h2>
         </div>
-        <p>Desarrollado por Ale Cueto</p>
-        <p>Alura Latam- 2024</p>
-    </footer>
 
-    <script type="module">
-        import { printProducts } from './js/controller/printProducts.js';
-        import { addProducts } from './js/controller/addProducts.js';
-    </script>
+    </section>
+
+    <section id="containerForm">
+        <h2>Adicionar produto:</h2>
+        <div id="formContent">
+            <form action="">
+                <input id="nameProductForm" type="text" placeholder="Nome..." maxlength="50" >
+                <input id="priceProductForm" type="number" placeholder="Preço..." >
+                <input id="imgProductForm" type="text" placeholder="Imagem...">
+                <div class="btn-form">
+                    <button id="btnSend">Enviar</button>
+                    <button id="btnClean">Limpar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
+</main>
+<footer>
+    <div class="footer">
+        <img src="img/coracaoalura.png" alt="coração alura">
+        <h2>AluraGeek</h2>
+    </div>
+    <p>&copy; 2024 Felipe Moreira Rios</p>
+    <p>Todos os direitos reservados</p>
+</footer>
+
+<script type="module">
+    import { printProducts } from './js/controller/printProducts.js';
+    import { addProducts } from './js/controller/addProducts.js';
+</script>
 </body>
 
 </html>
