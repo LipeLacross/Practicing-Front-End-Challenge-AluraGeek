@@ -124,19 +124,29 @@ main {
 
 }
 
-.delete-btn img {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    object-fit: contain;
+
+/* Estilo do botão de deletar */
+.delete-btn {
+    background: none; /* Remove fundo padrão */
+    border: none; /* Remove borda padrão */
+    padding: 0; /* Remove preenchimento */
+    margin: 0; /* Remove margens */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Mostra o cursor clicável */
+    width: 32px; /* Largura fixa do botão */
+    height: 32px; /* Altura fixa do botão */
+    color: #ff4d4d; /* Cor do ícone */
+    font-size: 24px; /* Tamanho do ícone */
+    transition: color 0.3s ease; /* Transição para hover */
 }
 
-.delete-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+.delete-btn:hover {
+    color: #ff1a1a; /* Cor mais escura ao passar o mouse */
 }
+
+
 
 .price {
     display: flex;
