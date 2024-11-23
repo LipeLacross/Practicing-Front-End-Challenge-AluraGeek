@@ -1,80 +1,76 @@
 function addProducts() {
-        // const repoUrl = "http://localhost:3000"
-        const repoUrl = "https://alura-geek-json-server.vercel.app"
+    // const repoUrl = "http://localhost:3000"
+    const repoUrl = "https://alura-geek-json-server.vercel.app"
 
-        let form = document.querySelector('form');
-        let nameProductForm = form.querySelector('#nameProductForm');
-        let priceProductForm = form.querySelector('#priceProductForm');
-        let imgProductForm = form.querySelector('#imgProductForm');
-        let btnSend = form.querySelector('#btnSend');
-        let btnClean = form.querySelector('#btnClean');
+    let form = document.querySelector('form');
+    let nameProductForm = form.querySelector('#nameProductForm');
+    let priceProductForm = form.querySelector('#priceProductForm');
+    let imgProductForm = form.querySelector('#imgProductForm');
+    let btnSend = form.querySelector('#btnSend');
+    let btnClean = form.querySelector('#btnClean');
 
-        // Event listener para el evento de entrada en el campo de precio
-        priceProductForm.addEventListener('input', function () {
-            // Obtener el valor actual del campo de precio
-            let price = this.value;
+    // Event listener para o evento de entrada no campo de preço
+    priceProductForm.addEventListener('input', function () {
+        // Obter o valor atual do campo de preço
+        let price = this.value;
 
-            // Verificar si el valor del precio tiene más de 5 caracteres
-            if (price.length > 5) {
-                this.value = price.slice(0, 13);
-            }
+        // Verificar se o valor do preço tem mais de 5 caracteres
+        if (price.length > 5) {
+            this.value = price.slice(0, 13);
+        }
 
-        });
-        // Event listener para el botón "Enviar"
-        btnSend.addEventListener('click', function (event) {
-            event.preventDefault(); 
+    });
+    // Event listener para o botão "Enviar"
+    btnSend.addEventListener('click', function (event) {
+        event.preventDefault();
 
-            // Obtener los valores de los campos del formulario
-            let name = nameProductForm.value;
-            let price = parseFloat(priceProductForm.value);
-            let img = imgProductForm.value;
+        // Obter os valores dos campos do formulário
+        let name = nameProductForm.value;
+        let price = parseFloat(priceProductForm.value);
+        let img = imgProductForm.value;
 
-            // Verificar que todos los campos estén completos
-            if (name.trim() === '' || isNaN(price) || img.trim() === '') {
-                alert('Por favor completa todos los campos');
-                return;
-            }
+        // Verificar se todos os campos estão completos
+        if (name.trim() === '' || isNaN(price) || img.trim() === '') {
+            alert('Por favor, preencha todos os campos');
+            return;
+        }
 
-            // Datos del nuevo producto 
-            let nuevoProducto = {
-                name: name,
-                price: price,
-                img: img
-            };
+        // Dados do novo produto
+        let novoProduto = {
+            name: name,
+            price: price,
+            img: img
+        };
 
-            // Opciones para la solicitud fetch
-            let options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(nuevoProducto) 
-            };
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novoProduto)
+        };
 
-            // Realizar la solicitud POST a la API
-            fetch(`${repoUrl}/products`, options)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("La solicitud no fue exitosa");
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Producto añadido:", data);
-                })
-                .catch(error => {
-                    console.error("Error al realizar la solicitud:", error);
-                });
-        });
+        fetch(`${repoUrl}/products`, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("A solicitação não foi bem-sucedida");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Produto adicionado:", data);
+            })
+            .catch(error => {
+                console.error("Erro ao realizar a solicitação:", error);
+            });
+    });
 
-        // Event listener para el botón "Limpiar"
-        btnClean.addEventListener('click', function (event) {
-            event.preventDefault()
-            // Limpiar los valores de los campos del formulario
-            nameProductForm.value = '';
-            priceProductForm.value = '';
-            imgProductForm.value = '';
-        });
+    btnClean.addEventListener('click', function (event) {
+        event.preventDefault()
+        nameProductForm.value = '';
+        priceProductForm.value = '';
+        imgProductForm.value = '';
+    });
 }
 
 addProducts()
